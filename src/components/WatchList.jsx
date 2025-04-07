@@ -52,7 +52,7 @@ const WatchListItem = ({ stock }) => {
           ) : (
             <KeyboardArrowUpIcon className="up" />
           )}
-          <span className="price">{stock.price}</span>
+          <span className={stock.isDown ? "down" : "up"}>{stock.price}</span>
         </div>
       </div>
       {showWatchlistAction && <WatchListActions uid={stock.name}/>}
