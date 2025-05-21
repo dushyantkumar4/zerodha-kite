@@ -1,10 +1,24 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import {positions} from "../data/data.js";
+import axios from "axios";
 
 const Positions = () => {
+  const [allPositions,setAllPositions] = useState([]);
+
+  useEffect(()=>{
+    const positions=async()=>{
+      try{
+        const res= await axios.get("https://zerodha-backend-5gz6.onrender.com/allpositions");
+        setAllPositions(res.data);
+      }catch(err){
+        console.log(err.message);
+      }
+    }
+    positions();
+  }, []);
   return (
     <>
-      <h3 className="title">Positions ({positions.length})</h3>
+      <h3 className="title">Positions ({allPositions.length})</h3>
 
       <div className="order-table">
         <table>
@@ -17,7 +31,7 @@ const Positions = () => {
             <th>P&L</th>
             <th>Chg.</th>
           </tr>
-          {positions.map((stock,index)=>{
+          {allPositions.map((stock,index)=>{
             const currValue = stock.price*stock.qty;
             
             const isProfit =currValue - stock.avg*stock.qty >= 0.0;

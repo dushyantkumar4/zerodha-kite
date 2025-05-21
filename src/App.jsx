@@ -5,11 +5,13 @@ import Home from "./components/Home.jsx";
 import Apps from "./components/Apps";
 import Funds from "./components/Funds";
 import Holdings from "./components/Holdings";
-
+import Dashboard from "./components/Dashboard.jsx";
 import Orders from "./components/Orders";
 import Positions from "./components/Positions";
 import Summary from "./components/Summary";
-import WatchList from "./components/WatchList";
+import {Login,Signup} from "./pages";
+import Error from "./pages/Error.jsx";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -19,7 +21,20 @@ function App() {
         <>
           <TopBar />
           <div className="dashboard-container">
-            <WatchList />
+            <Dashboard/>
+            <div className="content">
+              <Error />
+            </div>
+          </div> 
+        </>
+    },
+    {
+      path: "/",
+      element: 
+        <>
+          <TopBar />
+          <div className="dashboard-container">
+            <Dashboard/>
             <div className="content">
               <Home />
             </div>
@@ -27,18 +42,17 @@ function App() {
         </>
     },
     {
-      path: "/",
+      path: "/dashboard",
       element:
         <>
           <TopBar />
           <div className="dashboard-container">
-            <WatchList />
+            <Dashboard/>
             <div className="content">
               <Summary />
             </div>
           </div>
         </>
-      
     },
     {
       path: "/orders",
@@ -46,7 +60,7 @@ function App() {
         <>
           <TopBar />
           <div className="dashboard-container">
-            <WatchList />
+            <Dashboard/>
             <div className="content">
               <Orders />
             </div>
@@ -60,7 +74,7 @@ function App() {
         <>
           <TopBar />
           <div className="dashboard-container">
-            <WatchList />
+            <Dashboard/>
             <div className="content">
               <Holdings />
             </div>
@@ -74,7 +88,7 @@ function App() {
         <>
           <TopBar />
           <div className="dashboard-container">
-            <WatchList />
+            <Dashboard/>
             <div className="content">
               <Positions />
             </div>
@@ -88,7 +102,7 @@ function App() {
         <>
           <TopBar />
           <div className="dashboard-container">
-            <WatchList />
+            <Dashboard/>
             <div className="content">
               <Funds />
             </div>
@@ -102,14 +116,39 @@ function App() {
         <>
           <TopBar />
           <div className="dashboard-container">
-            <WatchList />
+            <Dashboard/>
             <div className="content">
               <Apps />
             </div>
           </div>
         </>
-      
     },
+    {
+      path: "/signup",
+      element: 
+        <>
+          <TopBar />
+          <div className="dashboard-container">
+            <Dashboard/>
+            <div className="content">
+              <Signup/>
+            </div>
+          </div>
+        </>
+    },
+    {
+      path: "/login",
+      element: 
+        <>
+          <TopBar />
+          <div className="dashboard-container">
+            <Dashboard/>
+            <div className="content">
+              <Login/>
+            </div>
+          </div>
+        </>
+    }
   ]);
 
   return <RouterProvider router={router} />;
