@@ -32,7 +32,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/signup",
+        "https://zerodha-backend-5gz6.onrender.com/signup",
         {
           ...inputValue,
         },
